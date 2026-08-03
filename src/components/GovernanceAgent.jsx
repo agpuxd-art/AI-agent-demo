@@ -700,7 +700,7 @@ const GovernanceAgent = ({ initialQuery, setInitialQuery, project, tasks, sessio
       msg,
       newTime,
       reason,
-      text: '1 project marked as completed.'
+      text: 'Marking 4 projects as completed.'
     });
   };
 
