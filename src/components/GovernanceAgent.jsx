@@ -338,7 +338,8 @@ const GovernanceAgent = ({ initialQuery, setInitialQuery, project, tasks, sessio
 
     if (textLower.includes('mark all') || textLower.includes('complete') || textLower.includes('close') || textLower.includes('finish') || textLower.includes('resolve')) {
 
-      const allCompleted = tasks && tasks.length > 0 && tasks.every(t => t.Status === 'Completed');
+      const didResolveBlocker = messages.some(m => m.text && m.text.includes('Since this was the final blocker'));
+      const allCompleted = tasks && tasks.length > 0 && tasks.every(t => t.Status === 'Completed') && didResolveBlocker;
       
       if (allCompleted) {
         updateSession({ isProcessing: true, processingStep: 1 });
