@@ -68,8 +68,30 @@ function App() {
   const handleMarkAllProjectsCompleted = () => {
     setData(prev => ({
       ...prev,
-      projects: prev.projects.map(p => ({ ...p, Status: 'Completed' }))
+      projects: prev.projects.map(p => ({ ...p, ProjectStatus: 'Completed', Status: 'Completed' })),
+      tasks: prev.tasks.map(t => ({ ...t, Status: 'Completed' }))
     }));
+  };
+
+  const handleTasksReassigned = (reassignments) => {
+    setData(prev => {
+      const rMap = new Map(reassignments.map(r => [r.taskId, r]));
+      return {
+        ...prev,
+        tasks: prev.tasks.map(t => {
+          if (rMap.has(t.TaskId)) {
+            const r = rMap.get(t.TaskId);
+            return {
+              ...t,
+              ...(r.assignee !== undefined ? { Assignee: r.assignee } : {}),
+              ...(r.hoursTracked !== undefined ? { HoursTracked: r.hoursTracked } : {}),
+              ...(r.status !== undefined ? { Status: r.status } : {})
+            };
+          }
+          return t;
+        })
+      };
+    });
   };
 
   const hasActiveChat = chatSessions.length > 1 || chatSessions[0].messages.length > 0;
@@ -137,6 +159,7 @@ function App() {
                 initialQuery={governanceQuery} 
                 setInitialQuery={setGovernanceQuery} 
                 project={activeProject}
+                projects={data.projects}
                 tasks={activeTasks}
                 chatSessions={chatSessions}
                 setChatSessions={setChatSessions}
@@ -145,6 +168,7 @@ function App() {
                 onTasksCompleted={handleMarkTasksCompleted}
                 onAllTasksCompleted={handleMarkAllTasksCompleted}
                 onAllProjectsCompleted={handleMarkAllProjectsCompleted}
+                onTasksReassigned={handleTasksReassigned}
                 setActiveTab={setActiveTab}
               />
             )}

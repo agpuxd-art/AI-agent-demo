@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus, Search, MessageSquare, Sparkles, ArrowLeft } from 'lucide-react';
 import GovernanceAgent from './GovernanceAgent';
+import CaseStudyModal from './CaseStudyModal';
 
 const GovernanceChatLayout = ({ 
   initialQuery, setInitialQuery, 
-  project, tasks, 
+  project, projects, tasks, 
   chatSessions, setChatSessions, 
   activeSessionId, setActiveSessionId,
   onTasksCompleted,
   onAllTasksCompleted,
   onAllProjectsCompleted,
+  onTasksReassigned,
   setActiveTab
 }) => {
+  const [showCaseStudy, setShowCaseStudy] = useState(false);
   
   const handleNewChat = () => {
     const newId = Date.now().toString();
@@ -121,20 +124,56 @@ const GovernanceChatLayout = ({
             </div>
           </div>
         )}
+
+        {/* Sidebar Case Study Trigger */}
+        <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid #e2e8f0' }}>
+          <button
+            onClick={() => setShowCaseStudy(true)}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '10px 12px',
+              backgroundColor: '#f5f3ff',
+              border: '1px solid #ddd6fe',
+              borderRadius: '8px',
+              color: '#7c3aed',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'background-color 0.2s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#ede9fe'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f5f3ff'}
+          >
+            <Sparkles size={14} color="#7c3aed" /> UX Case Study & Architecture
+          </button>
+        </div>
       </div>
 
       {/* Main Chat Area */}
-      <div style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        
         <GovernanceAgent 
           initialQuery={initialQuery} 
           setInitialQuery={setInitialQuery} 
           project={project}
+          projects={projects}
           tasks={tasks}
           session={activeSession}
           updateSession={updateActiveSession}
           onTasksCompleted={onTasksCompleted}
           onAllTasksCompleted={onAllTasksCompleted}
           onAllProjectsCompleted={onAllProjectsCompleted}
+          onTasksReassigned={onTasksReassigned}
+          setActiveTab={setActiveTab}
+        />
+
+        <CaseStudyModal 
+          isOpen={showCaseStudy} 
+          onClose={() => setShowCaseStudy(false)} 
+          onLaunchScenario={(scenario) => setInitialQuery(scenario)}
         />
       </div>
 

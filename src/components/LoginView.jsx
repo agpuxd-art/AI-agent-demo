@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const LoginView = ({ onLogin }) => {
-  const [email, setEmail] = useState('sravanth.sekar@company.com');
+  const [email, setEmail] = useState('demo@examplecompany.com');
   const [password, setPassword] = useState('password123');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -210,7 +210,7 @@ const LoginView = ({ onLogin }) => {
       }}>
         <div style={{ textAlign: 'center', marginBottom: '40px', zIndex: 10 }}>
           <h2 style={{ fontSize: '1.75rem', fontWeight: '600', color: '#0f172a', margin: '0 0 8px 0' }}>
-            Nitro Assistant comes with
+            Orbito Assistant comes with
           </h2>
           <h2 style={{ fontSize: '1.75rem', fontWeight: '600', color: '#0f172a', margin: 0 }}>
             <span style={{ color: '#6366f1' }}>purpose-built agents</span> that work together to drive outcomes.

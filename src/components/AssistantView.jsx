@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Sparkles, User, AlertCircle, X } from 'lucide-react';
+import { ArrowRight, Sparkles, AlertCircle, X } from 'lucide-react';
 
 const AssistantView = ({ setActiveTab, setGovernanceQuery, hasActiveChat }) => {
   const [inputValue, setInputValue] = useState('');
@@ -93,12 +93,12 @@ const AssistantView = ({ setActiveTab, setGovernanceQuery, hasActiveChat }) => {
       {/* Main Content Area */}
       <div style={{ padding: '48px 48px 32px 48px', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden' }}>
         
-        <h1 style={{ fontSize: '1.75rem', fontWeight: 600, color: '#1e293b', marginBottom: '8px' }}>Nitro Assistant</h1>
+        <h1 style={{ fontSize: '1.75rem', fontWeight: 600, color: '#1e293b', marginBottom: '8px' }}>Orbito Assistant</h1>
         <p style={{ color: '#64748b', fontSize: '1rem', marginBottom: '32px' }}>
-          Hi Sravanth, What can I help with?
+          Hi Alex, What can I help with?
         </p>
 
-        {/* Ask Nitro Input - Fixed above cards */}
+        {/* Ask Orbito Input - Fixed above cards */}
         <div style={{
           width: '100%',
           maxWidth: '600px',
@@ -126,7 +126,7 @@ const AssistantView = ({ setActiveTab, setGovernanceQuery, hasActiveChat }) => {
             )}
             <input 
               type="text" 
-              placeholder={selectedAgent ? "What would you like me to do?" : "Ask Nitro or type / to invoke an agent to delegate a task"} 
+              placeholder={selectedAgent ? "What would you like me to do?" : "Ask Orbito or type / to invoke an agent to delegate a task"} 
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={(e) => e.key === 'Enter' && handleInputSubmit()}
@@ -180,12 +180,15 @@ const AssistantView = ({ setActiveTab, setGovernanceQuery, hasActiveChat }) => {
               ))}
             </div>
           )}
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '16px' }}>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '16px', flexWrap: 'wrap' }}>
             <button onClick={() => {handleLaunchGovernance("Mark all the projects completed");}} style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid #e2e8f0', backgroundColor: '#ffffff', color: '#475569', fontSize: '0.85rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
               Try: Mark all the projects completed
             </button>
             <button onClick={() => {handleLaunchGovernance("Wrap lisa's work with in end of the week");}} style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid #e2e8f0', backgroundColor: '#ffffff', color: '#475569', fontSize: '0.85rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
               Try: Wrap lisa's work with in end of the week
+            </button>
+            <button onClick={() => {handleLaunchGovernance("Check portfolio compliance");}} style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid #e2e8f0', backgroundColor: '#ffffff', color: '#475569', fontSize: '0.85rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+              Try: Check portfolio compliance
             </button>
           </div>
         </div>

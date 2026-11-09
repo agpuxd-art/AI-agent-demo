@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ClipboardCheck, Sparkles, Target, Users, Settings, Bell, MessageSquare, Briefcase, Plus, Search } from 'lucide-react';
+import { ClipboardCheck, Sparkles, Target, Users, Settings, Bell, MessageSquare, Briefcase, Plus } from 'lucide-react';
 
 const Sidebar = ({ activeTab, setActiveTab, onLogout, hasActiveChat, onTryPrompt }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -38,7 +38,7 @@ const Sidebar = ({ activeTab, setActiveTab, onLogout, hasActiveChat, onTryPrompt
         <div 
           className={`sidebar-icon ${activeTab === 'assistant' || activeTab === 'governance_chat' ? 'active' : ''}`}
           onClick={() => setActiveTab(hasActiveChat ? 'governance_chat' : 'assistant')}
-          title="Nitro Assistant: Access AI agents for automation and governance"
+          title="Orbito Assistant: Access AI agents for automation and governance"
         >
           <Sparkles size={20} />
         </div>
@@ -114,11 +114,11 @@ const Sidebar = ({ activeTab, setActiveTab, onLogout, hasActiveChat, onTryPrompt
       <div style={{ position: 'relative' }}>
         <div 
           className="sidebar-icon" 
-          title="User Profile: Sravanth" 
+          title="User Profile: Alex" 
           style={{ backgroundColor: '#3b82f6', color: 'white', borderRadius: '50%', marginBottom: '16px', cursor: 'pointer' }}
           onClick={() => setShowMenu(!showMenu)}
         >
-          S
+          A
         </div>
         {showMenu && (
           <div style={{ position: 'absolute', left: '100%', bottom: '16px', marginLeft: '8px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', padding: '4px', minWidth: '100px', zIndex: 100, border: '1px solid #e2e8f0' }}>

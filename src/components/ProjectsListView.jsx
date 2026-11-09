@@ -7,15 +7,26 @@ const ProjectsListView = ({ projects, tasks, onSelectProject }) => {
   const projectsPerPage = 10;
 
   const getProjectStats = (projectId) => {
+    const proj = projects.find(p => p.ProjectId === projectId);
+    const isProjCompleted = proj?.ProjectStatus === 'Completed' || proj?.Status === 'Completed';
     const pTasks = tasks.filter(t => t.ProjectId === projectId);
-    if (pTasks.length === 0) return { progress: 0, phase: 'Pre-Kickoff', status: 'Proposed', tasksCount: 0, assignees: [] };
+
+    if (pTasks.length === 0) {
+      return { 
+        progress: isProjCompleted ? 100 : 0, 
+        phase: isProjCompleted ? 'Closed' : 'Pre-Kickoff', 
+        status: isProjCompleted ? 'Completed' : 'Proposed', 
+        tasksCount: 0, 
+        assignees: [] 
+      };
+    }
 
     const completed = pTasks.filter(t => t.Status === 'Completed').length;
-    const progress = Math.round((completed / pTasks.length) * 100);
+    const progress = isProjCompleted ? 100 : Math.round((completed / pTasks.length) * 100);
     
     // Status Logic
     let status = 'Proposed';
-    if (progress === 100) status = 'Completed';
+    if (progress === 100 || isProjCompleted) status = 'Completed';
     else if (progress > 0) status = 'In progress';
     
     // Pick the first non-completed phase as current phase

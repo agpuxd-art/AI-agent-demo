@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { CheckCircle2, Clock, AlertTriangle, Ban, Calendar, ChevronRight, FileText, Circle } from 'lucide-react';
+import { CheckCircle2, Calendar, ChevronRight, FileText, Circle } from 'lucide-react';
 import { AssigneeAvatar } from './SharedUI';
 
 const OverviewView = ({ project, tasks }) => {
@@ -32,14 +32,7 @@ const OverviewView = ({ project, tasks }) => {
     return '#64748b'; // slate
   };
 
-  const getStatusBg = (status) => {
-    const s = (status || '').toLowerCase();
-    if (s.includes('progress')) return '#d1fae5';
-    if (s.includes('risk')) return '#fef3c7';
-    if (s.includes('block')) return '#fee2e2';
-    if (s.includes('complete')) return '#dbeafe';
-    return '#f1f5f9';
-  };
+
 
   const formatDate = (dateString) => {
     if (!dateString) return '-';

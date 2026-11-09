@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Layers, Sparkles } from 'lucide-react';
+import { Layers } from 'lucide-react';
 
 const SubNav = ({ activeTab, setActiveTab }) => {
   return (

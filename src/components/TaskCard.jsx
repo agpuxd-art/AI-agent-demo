@@ -23,7 +23,7 @@ const getStatusIcon = (status, isMilestone) => {
   return <Circle size={18} color={color} />;
 };
 
-const TaskCard = ({ task, index }) => {
+const TaskCard = ({ task }) => {
   let assignees = [];
   if (task.Assignee && typeof task.Assignee === 'string') {
     assignees = task.Assignee.split(',').map(a => a.trim()).filter(a => a);
